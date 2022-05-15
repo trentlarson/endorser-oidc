@@ -9,7 +9,7 @@ const discover = async () => {
 
   const client = new issuer.Client({
     client_id: 'endorser.ch',
-    redirect_uris: ['https://client.local.gd/cb'],
+    redirect_uris: ['https://client.local.gd/oidc-callback'],
     response_types: ['id_token'],
     // id_token_signed_response_alg (default "RS256")
   })
