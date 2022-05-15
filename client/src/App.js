@@ -10,6 +10,7 @@ const discover = async () => {
   const client = new issuer.Client({
     client_id: 'endorser.ch',
     redirect_uris: ['https://client.local.gd/oidc-callback'],
+    //redirect_uris: ['https://jwt.io'], // see jwt.io comment below for this
     response_types: ['id_token'],
     // id_token_signed_response_alg (default "RS256")
   })
@@ -22,7 +23,7 @@ const discover = async () => {
 
   const authUrl = client.authorizationUrl({
     scope: 'openid email profile',
-    response_mode: 'form_post',
+    response_mode: 'form_post', // remove this if using jwt.io (because it doesn't like posts)
     nonce,
   })
   console.log('authUrl',authUrl)
