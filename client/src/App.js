@@ -3,7 +3,7 @@ const { generators, Issuer } = require('openid-client')
 const discover = async () => {
   const issuer = await Issuer.discover('http://localhost:4000');
   //console.log('issuer', issuer);
-  console.log('issuer metadata', issuer.metadata);
+  //console.log('issuer metadata', issuer.metadata);
 
   // from https://github.com/panva/node-openid-client#implicit-id-token-flow
 
@@ -26,7 +26,7 @@ const discover = async () => {
     response_mode: 'form_post', // remove this if using jwt.io (because it doesn't like posts)
     nonce,
   })
-  console.log('authUrl',authUrl)
+  console.log(authUrl)
 
 }
 
