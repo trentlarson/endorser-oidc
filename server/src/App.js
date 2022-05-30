@@ -25,11 +25,7 @@ const configuration = {
 
     ////////////////////////////////////////////////////////////////
     /**
-       This client_credentials approach allows direct API calls.
-
-       From https://www.scottbrady91.com/openid-connect/getting-started-with-oidc-provider
-
-       The following settings allow calls to the /token & /token/introspection endpoint, eg.
+       This client_credentials approach allows direct API calls to the /token & /token/introspection endpoints.
 
        $ curl -X POST -H 'Authorization: Basic ZW5kb3JzZXIuY2g6VFFWNVUyOWsxZ0hpYkg1YngxbGF5Qm8wT1NBdkFiUlQzVVlXM0VXclNZQkI1c3d4alZmV1VhMUJTOGxxenhHLzB2OXdydU1jckdhZGFueTM=' "http://localhost:4000/token" -d "grant_type=client_credentials&scopes=openid"
 
@@ -39,19 +35,17 @@ const configuration = {
 
        Result: {"active":true,"client_id":"endorser.ch","exp":1652671339,"iat":1652670739,"iss":"http://localhost:4000","token_type":"Bearer"}
 
+       From https://www.scottbrady91.com/openid-connect/getting-started-with-oidc-provider
+
        Enable these settings (plus features.clientCredentials and features.introspection below):
 
+    grant_types: ['client_credentials'],
+    redirect_uris: [],
+    response_types: [],
+    token_endpoint_auth_method: 'client_secret_basic', // auth is enforced without this
+    //token_endpoint_auth_method: 'none', // supposedly this is a valid setting but it still complains if Authorization missing
     **/
 
-    //grant_types: ['client_credentials'],
-    //redirect_uris: [],
-    //response_types: [],
-
-
-
-
-    //token_endpoint_auth_method: 'none',
-    //token_endpoint_auth_method: 'client_secret_basic',
   }],
   features: {
     //clientCredentials: { enabled: true }, // see client_credentials approach with /token & /introspection endpoints above
