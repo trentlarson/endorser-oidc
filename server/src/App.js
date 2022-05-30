@@ -42,7 +42,7 @@ const configuration = {
     grant_types: ['client_credentials'],
     redirect_uris: [],
     response_types: [],
-    token_endpoint_auth_method: 'client_secret_basic', // auth is enforced without this
+    token_endpoint_auth_method: 'client_secret_basic', // auth is enforced even without this
     //token_endpoint_auth_method: 'none', // supposedly this is a valid setting but it still complains if Authorization missing
     **/
 
@@ -65,7 +65,7 @@ const configuration = {
   **/
 
   /** Not sure the utility of this but I may play with it.
-  // after adding this, it doesn't ask for the confirmation screen
+  // This causes it to not show the Authorize screen to ask to continue after login.
   loadExistingGrant: async (ctx) => {
     //console.log('loadExistingGrant context', ctx)
     const grant = new ctx.oidc.provider.Grant({
