@@ -8,9 +8,19 @@ const configuration = {
     client_id: 'endorser.ch',
     client_secret: 'TQV5U29k1gHibH5bx1layBo0OSAvAbRT3UYW3EWrSYBB5swxjVfWUa1BS8lqzxG/0v9wruMcrGadany3',
 
+
+
+
+    ////////////////////////////////////////////////////////////////
+    // This implicit approach includes an Authorization screen and sends an id_token to the oidc-callback URL in a post.
+
     redirect_uris: ['https://client.local.gd/oidc-callback', 'https://jwt.io'],
     response_types: ['id_token'],
     grant_types: ['implicit'],
+
+
+    ////////////////////////////////////////////////////////////////
+    // This client_credentials approach ... ???
 
     /**
 
@@ -24,21 +34,24 @@ const configuration = {
     $ curl -X POST -H 'Authorization: Basic ZW5kb3JzZXIuY2g6VFFWNVUyOWsxZ0hpYkg1YngxbGF5Qm8wT1NBdkFiUlQzVVlXM0VXclNZQkI1c3d4alZmV1VhMUJTOGxxenhHLzB2OXdydU1jckdhZGFueTM=' "http://localhost:4000/token/introspection" -d "token=53C-nq3jIiwrbZJWVjKmI4sFYtce1o1Q2tt3w0QNGcY"
     {"active":true,"client_id":"endorser.ch","exp":1652671339,"iat":1652670739,"iss":"http://localhost:4000","token_type":"Bearer"}
 
-    These settings (plus features.clientCredentials and features.introspection):
-
-    redirect_uris: [],
-    response_types: [],
-    grant_types: ['client_credentials'],
+    Enable these settings (plus features.clientCredentials and features.introspection below):
 
     **/
+
+    //redirect_uris: [],
+    //response_types: [],
+    //grant_types: ['client_credentials'],
+
+
+
 
     //token_endpoint_auth_method: 'none',
     //token_endpoint_auth_method: 'client_secret_basic',
   }],
   features: {
-    //clientCredentials: { enabled: true },
+    //clientCredentials: { enabled: true }, // see client_credentials approach above
     //devInteractions: { enabled: false },
-    //introspection: { enabled: true }
+    //introspection: { enabled: true } // see client_credentials approach above
   },
 
   /** Not sure the utility of this but I may play with it.
