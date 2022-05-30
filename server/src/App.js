@@ -54,9 +54,9 @@ const configuration = {
     //token_endpoint_auth_method: 'client_secret_basic',
   }],
   features: {
-    //clientCredentials: { enabled: true }, // see client_credentials approach above
+    //clientCredentials: { enabled: true }, // see client_credentials approach with /token & /introspection endpoints above
     //devInteractions: { enabled: false },
-    //introspection: { enabled: true } // see client_credentials approach above
+    //introspection: { enabled: true } // see client_credentials approach with /introspection endpoint above
   },
 
   /** Not sure the utility of this but I may play with it.
