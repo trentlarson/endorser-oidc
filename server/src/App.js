@@ -12,35 +12,40 @@ const configuration = {
 
 
     ////////////////////////////////////////////////////////////////
-    // This implicit approach includes an Authorization screen and sends an id_token to the oidc-callback URL in a post.
+    /**
+       This implicit approach is for browsers.
+       It shows users a screen to enter their username & password and a screen to authorize (if devInteractions isn't disabled).
+       It can redirect with a post (if client sets response_mode to to form_post) or a fragment (if that's not set).
+    **/
 
+    grant_types: ['implicit'],
     redirect_uris: ['https://client.local.gd/oidc-callback', 'https://jwt.io'],
     response_types: ['id_token'],
-    grant_types: ['implicit'],
 
 
     ////////////////////////////////////////////////////////////////
-    // This client_credentials approach ... ???
-
     /**
+       This client_credentials approach allows direct API calls.
 
-    From https://www.scottbrady91.com/openid-connect/getting-started-with-oidc-provider
+       From https://www.scottbrady91.com/openid-connect/getting-started-with-oidc-provider
 
-    The following settings allow calls to the /token & /token/introspection endpoint, eg.
+       The following settings allow calls to the /token & /token/introspection endpoint, eg.
 
-    $ curl -X POST -H 'Authorization: Basic ZW5kb3JzZXIuY2g6VFFWNVUyOWsxZ0hpYkg1YngxbGF5Qm8wT1NBdkFiUlQzVVlXM0VXclNZQkI1c3d4alZmV1VhMUJTOGxxenhHLzB2OXdydU1jckdhZGFueTM=' "http://localhost:4000/token" -d "grant_type=client_credentials&scopes=openid"
-    {"access_token":"53C-nq3jIiwrbZJWVjKmI4sFYtce1o1Q2tt3w0QNGcY","expires_in":600,"token_type":"Bearer"}
+       $ curl -X POST -H 'Authorization: Basic ZW5kb3JzZXIuY2g6VFFWNVUyOWsxZ0hpYkg1YngxbGF5Qm8wT1NBdkFiUlQzVVlXM0VXclNZQkI1c3d4alZmV1VhMUJTOGxxenhHLzB2OXdydU1jckdhZGFueTM=' "http://localhost:4000/token" -d "grant_type=client_credentials&scopes=openid"
 
-    $ curl -X POST -H 'Authorization: Basic ZW5kb3JzZXIuY2g6VFFWNVUyOWsxZ0hpYkg1YngxbGF5Qm8wT1NBdkFiUlQzVVlXM0VXclNZQkI1c3d4alZmV1VhMUJTOGxxenhHLzB2OXdydU1jckdhZGFueTM=' "http://localhost:4000/token/introspection" -d "token=53C-nq3jIiwrbZJWVjKmI4sFYtce1o1Q2tt3w0QNGcY"
-    {"active":true,"client_id":"endorser.ch","exp":1652671339,"iat":1652670739,"iss":"http://localhost:4000","token_type":"Bearer"}
+       Result: {"access_token":"53C-nq3jIiwrbZJWVjKmI4sFYtce1o1Q2tt3w0QNGcY","expires_in":600,"token_type":"Bearer"}
 
-    Enable these settings (plus features.clientCredentials and features.introspection below):
+       $ curl -X POST -H 'Authorization: Basic ZW5kb3JzZXIuY2g6VFFWNVUyOWsxZ0hpYkg1YngxbGF5Qm8wT1NBdkFiUlQzVVlXM0VXclNZQkI1c3d4alZmV1VhMUJTOGxxenhHLzB2OXdydU1jckdhZGFueTM=' "http://localhost:4000/token/introspection" -d "token=53C-nq3jIiwrbZJWVjKmI4sFYtce1o1Q2tt3w0QNGcY"
+
+       Result: {"active":true,"client_id":"endorser.ch","exp":1652671339,"iat":1652670739,"iss":"http://localhost:4000","token_type":"Bearer"}
+
+       Enable these settings (plus features.clientCredentials and features.introspection below):
 
     **/
 
+    //grant_types: ['client_credentials'],
     //redirect_uris: [],
     //response_types: [],
-    //grant_types: ['client_credentials'],
 
 
 
